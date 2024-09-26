@@ -4,7 +4,7 @@ import path from 'path'
 const __dirname = path.resolve();
 
 export default defineConfig({
-    base: "/",
+    base: "./",
     plugins: [react()],
     test: {
         globals: true,

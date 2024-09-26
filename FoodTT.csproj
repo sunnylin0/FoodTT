@@ -165,8 +165,8 @@
     <Content Include="src\modal\LoginModal.jsx" />
     <Content Include="src\modal\ProductModal.jsx" />
     <Content Include="src\modal\UserOrdersModal.jsx" />
-    <Content Include="src\pages\Footer %283%29.jsx" />
     <Content Include="src\pages\Footer.jsx" />
+    <Content Include="src\pages\FromTest.jsx" />
     <Content Include="src\pages\Header.jsx" />
     <Content Include="src\pages\Home.jsx" />
     <Content Include="src\pages\mainlogo.jsx" />
@@ -225,7 +225,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties NpmRestoreOnProjectOpen="True" package_1json__JsonSchema="" />
+      <UserProperties package_1json__JsonSchema="" NpmRestoreOnProjectOpen="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

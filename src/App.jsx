@@ -5,6 +5,7 @@ import { Order } from './pages/Order'
 import { Home } from './pages/home'
 import { Other } from './pages/other'
 import { NotFound } from './pages/notfound'
+import { FormTest, FormTest2 } from './pages/FormTest'
 import { BackStage } from './backstage/BackStage'
 import { ProductManage } from './backstage/ProductManage'
 import { RevenueAnalysis } from './backstage/RevenueAnalysis'
@@ -15,13 +16,16 @@ const App = () =>
         <Routes>
             <Route index element={<Order />} />
             <Route path="/order" element={<Order />} />
+            <Route path="/" element={<Order />} />
             <Route path="/backstage" element={<BackStage />} />
             <Route path="/productmanage" element={<ProductManage />} />
             <Route path="/revenueanalysis" element={<RevenueAnalysis />} />
             <Route path="/main" element={<MainLogo />} />
             <Route path="/home" element={<Home />} />
             <Route path="/other" element={<Other />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/form" element={<FormTest />} />
+            <Route path="/form2" element={<FormTest2 />} />
+            <Route path="*" element={<Order />} />
         </Routes>
 </BrowserRouter>
 
