@@ -86,7 +86,7 @@ export let CartModal = ({ onClose }) => {
 		});
 
 		setEditProductObj(getCartObj);
-		onClose();
+		//onClose();
 		setShowEditProductModal(() => true)
 
 		//calCartTotalPrice()

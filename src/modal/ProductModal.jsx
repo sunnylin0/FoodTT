@@ -103,7 +103,8 @@ export function ProductModal({ productId, editProduct, onClose }) {
 	//singleItem = { ...singleItem, catId, id, name, price, tokenId };
 	let [state, setState] = useState({
 		...singleItem,
-		...myProductObj
+		...myProductObj,
+		tokenId
 		//catId, id, name, price, tokenId,
 		//qty: 1,								//商品數量
 		//total: 0,							//總價
@@ -144,16 +145,11 @@ export function ProductModal({ productId, editProduct, onClose }) {
     function putToCart() {
         const carts = getCarts();  
 		if (flagEdit == false) {
-			carts.push({
-				//...singleItem,
-				...state
-			});
+			carts.push({...state});
 		} else {
-			carts.forEach(prev => {
+			carts.forEach((prev,index,arr) => {
 				if (prev.tokenId == state.tokenId)
-					prev = {
-						...state
-					}
+					arr[index] = {...state}
 			})
 		}
 		saveDataToLocalStorage('cart', carts);
@@ -161,26 +157,6 @@ export function ProductModal({ productId, editProduct, onClose }) {
 		onClose();
     }
 
-	////更新購物車
-	//function updateToCart(productIndex) {
-	//	const carts = getCarts();
-	//	const qty = parseInt($('#tempProductAmount').text());
-	//	const comment = $('#tempProductComment').val();
-	//	const subjoinItems = [];
-	//	$('#foodSubjoinOptions input.foodSubjoinOption:checked').each(function () {
-	//		subjoinItems.push($(this).val());
-	//	});
-	//	const price = parseInt($("#tempProductTotal").text());
-	//	carts[productIndex].qty = qty;
-	//	carts[productIndex].comment = comment;
-	//	carts[productIndex].subjoinItems = subjoinItems;
-	//	carts[productIndex].price = price / qty;
-	//	saveDataToLocalStorage('cart', carts);
-	//	sweetSmallSuccess('已更新購物車');
-	//	$('#productModal').modal('hide');
-	//	showCartModal();
-	//	updateFooterTotalPrice();
-	//}
 
     return (
         <div>
