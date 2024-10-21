@@ -4,11 +4,13 @@
 	queries, queriesSQL, queriesToFile, queriesSQLToFile,
 	sql, sqlAsString, sqlToFile, sqlFromFile, sqlFromFileToFile,
 	tableToJson
-} from "@el3um4s/mdbtools";
+} from "./@el3um4s/mdbtools/lib/index.js";
+
+const MDB_PATH = "C:/GitHub/FoodTT/backend/mdbtools-win";
 
 export async function mdbinit() {
 	// in Windows
-	const windowsPath = "./mdbtools-win";
+	const windowsPath = MDB_PATH;
 	const versionW = await versionMdbTools(windowsPath);
 
 	console.log(versionW);
@@ -18,22 +20,23 @@ export async function mdbinit() {
 
 export async function mdb2() {
 	// in Windows
-	const windowsPath = "./mdbtools-win";
+	const windowsPath = MDB_PATH;
 	const database = "../database/dbfood.mdb";
 	const v = await version({ database, windowsPath });
 	console.log(v);
+	return v;
 }
 export async function mdb3() {
 	// table 的名
-	const windowsPath = "./mdbtools-win";
+	const windowsPath = MDB_PATH;
 	const database = "../database/dbfood.mdb";
 
 	const list = await tables({ database, windowsPath });
 	console.log(list);
 	// [ "Fruit", "Fruit Salad", "Veggie Salad", "Muffin/Bread", "Dried"]
 
-	//console.log("---> tablesSystem");
-	//const listSystem = await tablesSystem({ database });
+	console.log("---> tablesSystem");
+	const listSystem = await tablesSystem({ database, windowsPath  });
 	//console.log(listSystem);
 	//// [ "MSysObjects", "MSysACEs", "MSysQueries", "MSysRelationships", "MSysAccessObjects", "MSysNavPaneGroupCategories", "MSysNavPaneGroups", "MSysNavPaneGroupToObjects", "MSysNavPaneObjectIDs", "MSysAccessXML", "MSysNameMap" ]
 
@@ -60,7 +63,7 @@ export async function mdb3() {
 
 export async function mdb_quer() {
 	// 查詢
-	const windowsPath = "./mdbtools-win";
+	const windowsPath = MDB_PATH;
 	const database = "../database/dbfood.mdb";
 
 	const listQueries = await queries({ database, windowsPath });
@@ -91,13 +94,15 @@ export async function mdb_quer() {
 
 export async function mdb_sql1() {
 	//sql 
-	const windowsPath = "./mdbtools-win";
+	const windowsPath = MDB_PATH;
 	const database = "../database/dbfood.mdb";
 	const s = "SELECT * From order "// WHERE userId =2 ";
 
 	console.log("--> sql");
-	const result = await sql({ database, windowsPath, sql: s });
-	console.log(result);
+	const promise = await sql({ database, windowsPath, sql: s });
+	console.log(promise)
+	const promise2 = promise.then(() => { console.log("successCallback");return "success"});
+	return promise2;
 
 	console.log("--> sqlAsString");
 	const resultAsString = await sqlAsString({ database, windowsPath, sql: s });
@@ -129,7 +134,7 @@ export async function mdb_sql1() {
 
 
 export async function mdb_table1() {
-	const windowsPath = "./mdbtools-win";
+	const windowsPath = MDB_PATH;
 	const database = "../database/dbfood.mdb";
 	const table = "menu";
 

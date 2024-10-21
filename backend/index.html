@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+		button {
+			line-height: 30px;
+		}
+		#frmUrl {
+			width: 100%;
+			min-height: 100vh;
+			height: 100%;
+		}
+		#txtUrlBox {
+			width: 15%;
+			line-height: 30px;
+			margin: 25px 25px 25px 0;
+		}
+	</style>
+	<script type="text/javascript">
+		var frampage
+		window.addEventListener("load", (event) => {
+			console.log("load ")
+			frampage = document.getElementById('frmUrl')
+		});
+        function loadUrlToIframe() {
+			var url = document.getElementById("txtUrlBox").value;
+            frampage.src = url;
+		}
+		function gourl(str) {
+			frampage.src = str;
+		}
+	</script>
+</head>
+
+<body>
+	<div>
+		<div class="head">
+			<input id="txtUrlBox" type="text" />
+			<button id="btnLoadUrl" onclick="loadUrlToIframe()">load url</button>
+			<button onclick="gourl('/mdb2/')">mdb 2</button>
+			<button onclick="gourl('/mdb3/')">mdb 3</button>
+			<button onclick="gourl('/sql1/')">sql 1</button>
+			<button onclick="gourl('/tab1/')">tab 1</button>
+		</div>
+		<div>
+			<iframe id="frmUrl" ></iframe>
+		</div>
+	</div>
+
+</body>
+
+</html>
