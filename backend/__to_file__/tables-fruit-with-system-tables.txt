@@ -17,5 +17,4 @@ order
 detail
 detailSubjoin
 menuSubjoinList
-¶K¤W¿ù»~
 catTOsub
