@@ -10,13 +10,14 @@ $dir
 Remove-Item -path $dir -recurse
 Remove-Item $outdb -recurse
 mkdir $dir
-$scm=mdb-schema --default-values $fname sqlite  #> $dir/schema
+mdb-tables $fname -1 > $dir/tables
+mdb-schema --default-values $fname sqlite > $dir/schema
 #$scm=mdb-schema --indexes --relations --default-values --not-null $fname  sqlite
-foreach ($n in $scm){
+#foreach ($n in $scm){
 	#$n.gettype()
-	$one=$n.Replace("CREATE TABLE","CREATE TABLE IF NOT EXISTS ")
-	$one >> $dir/schema
-}
+	#$one=$n.Replace("CREATE TABLE","CREATE TABLE IF NOT EXISTS ")
+	#$one >> $dir/schema
+#}
  
 
 $tables =(mdb-tables.exe $fname).Trim().split(' ')
@@ -28,10 +29,10 @@ foreach ($n in $tables)
 	if ($outSQL.Length -gt 10){
 		$outSQL = $outSQL.replace('"',"'")
 	}
-	$outSQL> $dir/$n.sql
+	$outSQL>> $dir/allDB.sql
 }
 
-get-content $dir/schema | sqlite3 $outdb
+#get-content $dir/schema | sqlite3 $outdb
 
 #
 #$folders = Get-ChildItem  $dir\  -Recurse -Filter *.sql

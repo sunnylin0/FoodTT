@@ -4,7 +4,7 @@
 	queries, queriesSQL, queriesToFile, queriesSQLToFile,
 	sql, sqlAsString, sqlToFile, sqlFromFile, sqlFromFileToFile,
 	tableToJson
-} from "./@el3um4s/mdbtools/lib/index.js";
+} from "@el3um4s/mdbtools/lib/index.js";
 
 const MDB_PATH = "C:/GitHub/FoodTT/backend/mdbtools-win";
 

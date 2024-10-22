@@ -2,8 +2,9 @@ import express from 'express';
 import sqlite3 from 'sqlite3';
 import randomstring from 'randomstring'
 import path from 'path';
-import {v4 as uuidvs} from 'uuid';
+import { v4 as uuidvs } from 'uuid';
 import seedDatabase from './seedDatabase.js';
+import cityFoodDB, { init_food}from './CityFoodDB.js';
 import {
 	mdbinit, mdb2, mdb3, mdb_quer,
 	mdb_sql1, mdb_table1
@@ -11,7 +12,8 @@ import {
 
 const __dirname = path.resolve();
 
-await seedDatabase();
+//await seedDatabase();
+//await cityFoodDB();
 
 
 const app = express();
@@ -63,11 +65,16 @@ app.get("/sql1", (req, res) => {
 
 app.get("/tab1", (req, res) => {
 	console.log("mdb table function mdb_table1");
-	let result =mdb_table1();
-	res.send("mdb tabld function mdb_table1"+
+	let result = mdb_table1();
+	res.send("mdb tabld function mdb_table1" +
 		JSON.stringify(result));
 });
-
+app.get("/init", (req, res) => {
+	console.log("mdb table function mdb_table1");
+	let result = init_food();
+	res.send("mdb tabld function mdb_table1" +
+		JSON.stringify(result));
+});
 
 
 
