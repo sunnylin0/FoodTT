@@ -30,58 +30,6 @@ app.use(express.urlencoded({ limit: "50mb" }));
 
 
 
-app.get("/subjoin", (req, res) => {
-	console.log("subjoin is reached");
-
-	console.log("GET subjoin");
-	console.log("Body:", req.body);
-	res.set(headers);
-
-	const db = new sqlite3.Database(DB_PATHFILE, async (err) => {
-		if (err)
-			console.error(err);
-		else {
-
-			db.all("SELECT * FROM subCategory;", [], (err, rows) => {
-				if (rows && err == null) {
-					//rows.subCatId
-					//db.all()
-					let sData = []
-					rows.forEach((aRow) => {
-						console.log("o subCategory");
-						console.log(aRow.subCatId)
-						console.log(`SELECT subjoin.subId, subjoin.subName, subjoin.subPrice
-						FROM subCategory INNER JOIN subjoin ON subCategory.subCatId = subjoin.subCatId
-						WHERE subjoin.subCatId = '${aRow.subCatId}';`)
-
-						db.all(`SELECT subjoin.subId, subjoin.subName, subjoin.subPrice
-						FROM  subjoin 
-						WHERE subjoin.subCatId = 'AH01';`, [], (err, asRows) => {
-
-							console.log("asRows length" + asRows.length)
-							if (asRows && err == null) {
-								console.log("asRows == err")
-								//console.log(asRows)
-								sData.push("aRow")
-								//	console.log("asRows part 2")
-
-							}
-
-						}
-						)
-					})
-					console.log("sData 42")
-					console.log(sData)
-					sData.push("aRow")
-					res.send(sData);
-
-				}
-			});
-		}
-	});
-
-});
-
 app.get('/ss', async (req, res) => {
 	let db = new sqlite3.Database(DB_PATHFILE, async (err) => {
 		if (err) {
@@ -92,9 +40,7 @@ app.get('/ss', async (req, res) => {
 	})
 	let data;
 	let p3 = await getUsers();
-
 	res.send(p3);
-
 });
 async function getUsers() {
 	const promise = new Promise((resolve, reject) => {
@@ -127,7 +73,8 @@ async function getUsers() {
 	return promise;
 }
 
-app.get('/ss2', async (req, res) => {
+
+app.get('/subjoin', async (req, res) => {
 	let db = new sqlite3.Database(DB_PATHFILE, async (err) => {
 		if (err) {
 			console.error(err);
@@ -135,39 +82,37 @@ app.get('/ss2', async (req, res) => {
 			console.log("op db");
 		}
 	})
-	let idList = await getSubCategoryId();
+	let idList = await getSubCategoryId3();
 	console.log("SELECT * FROM subCategory;");
-	Promise.all(idList.map(async (id, index) =>
-		await getSubjoinItem(id))
-	)
-		.then(value => {
-			console.log(value)
-			resolve(value)
-			console.log("fine ");
-		})
-
-
-	console.log("out very");
-
-	res.send("value");
+	res.send(idList);
 
 });
-async function getSubCategoryId() {
+
+async function getSubCategoryId3() {
 	const promise = new Promise((resolve, reject) => {
 
-		console.log("getSubjoin");
+		console.log("getSubCategoryId3");		
+		
 		const db = new sqlite3.Database(DB_PATHFILE, async (err) => {
 			if (err) {
 				console.error(err);
 			} else {
 				try {
-					console.log("down 2");
-					const sql = "SELECT subCatId FROM subCategory;";
+					console.log("down 3");
+					const sql = "SELECT * FROM subCategory;";
 					db.all(sql, [], (err, rows) => {
 						if (err) reject(false);
 						else {
-							let getData = rows.map((ths) => ths.subCatId)
-							resolve(getData)
+							
+							let prolist = rows.map(async (ths,index) => {
+								let p = await getSubjoinItem(ths.subCatId)
+								return ({...ths, items:p } );
+							})
+							console.log("prolist")
+							console.log(prolist)
+							Promise.all(prolist)
+								.then(vales => resolve(vales))
+								.catch(err=>reject(err))							
 						}
 					})
 				} catch (err) {
@@ -177,6 +122,8 @@ async function getSubCategoryId() {
 			}
 		});
 	});
+	console.log("back promise")
+	console.log(promise)
 	return promise;
 }
 async function getSubjoinItem(itemId) {
@@ -200,7 +147,7 @@ async function getSubjoinItem(itemId) {
 						}
 						else {
 							console.log(`WHERE subjoin.subCatId = ${itemId};`);
-							console.log(rows);
+							//console.log(rows);
 							resolve(rows);
 						}
 					})
@@ -214,55 +161,226 @@ async function getSubjoinItem(itemId) {
 	})
 	return promise;
 }
-async function DBFetchingAllData(rows, db) {
-	let promiseList = []
-	rows.forEach((aRow, index) => {
-		console.log("arow __")
-		const p = new Promise((resolve, reject) => {
-			resolve('table ' + index)
-		})
-		promiseList.push(p)
-	});
-	Promise.all(...promiseList)
-		.then(value => {
-			console.log(value)
-			return value
-		})
-		.catch(err => {
-			console.log(err.message)
-
-			return err
-		})
-}
 
 
 
-function DBFetchingAllData2(rows, db) {
-	return new Promise((resolve) => {
+app.get('/getMenu', async (req, res) => {
+	let idList = await getMenuList();
+	console.log("SELECT * FROM menu;");
+	res.send(idList);
 
-		rows.forEach((aRow, index) => {
-			console.log("arow __")
-			console.log(aRow)
-			let sql = `SELECT subjoin.subId, subjoin.subName, subjoin.subPrice
-						FROM  subjoin 
-						WHERE subjoin.subCatId = 'AH01';`;
+});
 
-			db.all(sql, [], (err, asRows) => {
+async function getMenuList() {
+	const promise = new Promise((resolve, reject) => {
 
-				if (asRows && err == null) {
-					console.log("asRows == err")
-					console.log("asRows part 2")
-					resolve("jlasdei 123")
+		console.log("getSubCategoryId3");
+		const db = new sqlite3.Database(DB_PATHFILE, async (err) => {
+			if (err) {
+				console.error(err);
+			} else {
+				try {
+					console.log("down 3");
+					const sql = `SELECT menuId, catId, menuNameEn, menuName, comment, price, img, isSoldOut	FROM menu;`;
+					db.all(sql, [], (err, rows) => {
+						if (err) reject(false);
+						else {
+							let prolist = rows.map(async (ths, index) => {
+								let p = (await getMenuSubjoinList(ths.menuId))
+									.map(its => its.subCatId)
+								console.log("p=await getMenuSubjoinList(ths.menuId)")
+								
+									
+								console.log(p)
+								return ({ ...ths, subjoinIds: p });
+							})
+							console.log("prolist")
+							console.log(prolist)
+							Promise.all(prolist)
+								.then(vales => resolve(vales))
+								.catch(err => reject(err))
+						}
+					})
+				} catch (err) {
+					console.error(err);
+					reject(false);
 				}
-			});
-
+			}
 		});
-
 	});
-
+	console.log("back promise")
+	console.log(promise)
+	return promise;
+}
+async function getMenuSubjoinList(menuId) {
+	const promise = new Promise((resolve, reject) => {
+		console.log("getMenuSubjoinList");
+		const db = new sqlite3.Database(DB_PATHFILE, async (err) => {
+			if (err) {
+				console.error(err);
+			} else {
+				try {
+					let sql = `SELECT subCatId
+						FROM  menuSubjoinList
+						WHERE menuId = '${menuId}';`;
+					console.log("menu 2");
+					db.all(sql, [], (err, rows) => {
+						console.log("in in 5");
+						if (err) {
+							console.log("error");
+							console.log(err);
+							reject(false);
+						}
+						else {
+							console.log(`WHERE menuId = '${menuId}';`);
+							//console.log(rows);
+							resolve(rows);
+						}
+					})
+				} catch (err) {
+					console.log("very error");
+					console.error(err);
+					reject(false);
+				}
+			}
+		})
+	})
+	return promise;
 }
 
 
+
+
+app.get('/getCategory', async (req, res) => {
+	let idList = await getCategoryList();
+	console.log("SELECT * FROM Category;");
+	res.send(idList);
+
+});
+
+async function getCategoryList() {
+	const promise = new Promise((resolve, reject) => {
+
+		console.log("getCategoryList");
+		const db = new sqlite3.Database(DB_PATHFILE, async (err) => {
+			if (err) {
+				console.error(err);
+			} else {
+				try {
+					console.log("getCategoryList 7");
+					const sql = `SELECT * FROM category;`;
+					db.all(sql, [], (err, rows) => {
+						if (err) reject(false);
+						else {
+							let catlist = rows.map(async ths => ths.catName)
+							console.log("catlist")
+							console.log(catlist)
+							Promise.all(catlist)
+								.then(vales => resolve(vales))
+								.catch(err => reject(err))
+						}
+					})
+				} catch (err) {
+					console.error(err);
+					reject(false);
+				}
+			}
+		});
+	});
+	console.log("back promise")
+	console.log(promise)
+	return promise;
+}
+
+
+app.get('/getOrder', async (req, res) => {
+	let idList = await getOrderList();
+	//console.log("SELECT * FROM Order;");
+	//console.log(idList)
+	res.send(idList);
+});
+
+async function getOrderList() {
+	const promise = new Promise((resolve, reject) => {
+		console.log("getOrderList 7");
+		const db = new sqlite3.Database(DB_PATHFILE, async (err) => {
+			if (err) {
+				console.log("err 3");
+				console.error(err);
+			} else {
+				try {
+					console.log("down 3");
+//					const sql = `SELECT * FROM 'order' ;`;
+					const sql = `SELECT 'order'.orderId, 'order'.userId, 'order'.userName, users.phone, 'order'.remark, 'order'.dateTime, 'order'.totalPrice, 'order'.takeAway, 'order'.isDone, detail.detailId
+FROM 'users' INNER JOIN ('order' INNER JOIN 'detail' ON 'order'.orderId = detail.orderId) ON users.userId = 'order'.userId;`						
+					db.all(sql, [], (err, rows) => {
+						if (err) {
+							console.log("err go home 19");
+							reject(false);
+						}
+						else {
+							console.log("go home 13");
+							let prolist = rows.map(async (ths, index) => {
+								let p = (await getOrderDetailList(ths.orderId))
+									//.map(its => its.subCatId)
+								console.log("p=await getOrderDetailList(ths.orderId))")
+
+
+								console.log(p)
+								return ({ ...ths, details: p });
+							})
+							console.log("prolist")
+							console.log(prolist)
+							Promise.all(prolist)
+								.then(vales => resolve(vales))
+								.catch(err => reject(err))
+						}
+					})
+				} catch (err) {
+					console.error(err);
+					reject(false);
+				}
+			}
+		});
+	});
+	return promise;
+}
+
+async function getOrderDetailList(orderId) {
+	const promise = new Promise((resolve, reject) => {
+		console.log("getOrderDetailList");
+		const db = new sqlite3.Database(DB_PATHFILE, async (err) => {
+			if (err) {
+				console.error(err);
+			} else {
+				try {
+					const sql = `SELECT [order].orderId, detail.detailId, detail.menuId, detail.menuName, detail.price, detail.subPrice, detail.qty, detail.remark
+				FROM [order] INNER JOIN detail ON [order].orderId = detail.orderId
+				WHERE detail.orderId = '${orderId}';`;						
+					console.log("menu 2");
+					db.all(sql, [], (err, rows) => {
+						console.log("in in 5");
+						if (err) {
+							console.log("error");
+							console.log(err);
+							reject(false);
+						}
+						else {
+							console.log(`WHERE detail.orderId = '${orderId}';`)
+							//console.log(rows);
+							resolve(rows);
+						}
+					})
+				} catch (err) {
+					console.log("very error");
+					console.error(err);
+					reject(false);
+				}
+			}
+		})
+	})
+	return promise;
+}
 
 app.get("/mdbinit", (req, res) => {
 	console.log("mdbinit function");
@@ -362,10 +480,6 @@ async function closeGracefully(signal) {
 }
 process.on("SIGINT", closeGracefully);
 process.on("SIGTERM", closeGracefully);
-
-
-
-
 
 
 app.get('/', (req, res) => {
