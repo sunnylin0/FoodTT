@@ -4,12 +4,12 @@ import path from 'path'
 const __dirname = path.resolve();
 
 export default defineConfig({
-    base:"./",
+    base:"/FoodTT/",
     plugins: [react()],
     test: {
         globals: true,
         environment: 'jsdom',
-        setupFiles: ['./src/setupTests.js'],
+        setupFiles: ['./src/index.jsx'],
     },
     resolve: {
         alias: [

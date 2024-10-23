@@ -12,17 +12,18 @@ import { FoceAtom_extemplat } from './focusAtom/index'
 
 let TTT=()=><div>asdfasdf</div>
 const App = () =>
-   <BrowserRouter basename="/">
+<BrowserRouter basename="/FoodTT">
         <Routes>
-            <Route index element={<Order />} />
-            <Route path="/order" element={<Order />} />
+			<Route index element={<Order />} />
+			<Route path="*" element={<Order />} />
+			<Route path="/order" element={<Order />} />
             <Route path="/backstage" element={<BackStage />} />
             <Route path="/productmanage" element={<ProductManage />} />
             <Route path="/revenueanalysis" element={<RevenueAnalysis />} />
             <Route path="/main" element={<MainLogo />} />
             <Route path="/home" element={<Home />} />
             <Route path="/other" element={<Other />} />
-            <Route path="*" element={<FoceAtom_extemplat />} />
+            <Route path="/foce" element={<FoceAtom_extemplat />} />
         </Routes>
 </BrowserRouter>
 

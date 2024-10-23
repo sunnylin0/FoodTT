@@ -195,7 +195,7 @@ export function ProductModal({ productId, editProduct, onClose }) {
                         <div className="modal-body pt-1">
                             {/*<!-- 介紹 -->*/}
                             <div>
-                                <img src={getImageUrl(img)} className="modalFoodImg mb-3" alt="" />
+                                <img src={img} className="modalFoodImg mb-3" alt="" />
                                 <p className="h6 fw-light">{comment}</p>
                                 <p className="h6 fw-light"></p>
                                 <p className="h5">${price}</p>

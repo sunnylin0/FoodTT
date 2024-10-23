@@ -81,7 +81,7 @@ theMenu = [
                 "id": "p012",
                 "name": "玉米蛋餅",
                 "catId": "c01",
-                "img": "./Img/PC/p012.jpg",
+                "img": "./img/PC/p012.jpg",
                 "comment": "手工蛋餅皮+滿滿玉米",
                 "isSoldOut": false,
                 "price": 30,
@@ -95,7 +95,7 @@ theMenu = [
                 "name": "培根蛋餅",
                 "price": 35,
                 "comment": "手工蛋餅皮+雙份培根",
-                "img": "./Img/PC/p013.jpg",
+                "img": "./img/PC/p013.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -107,7 +107,7 @@ theMenu = [
                 "name": "火腿蛋餅",
                 "price": 35,
                 "comment": "手工蛋餅皮+整條火腿",
-                "img": "./Img/PC/p014.jpg",
+                "img": "./img/PC/p014.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -119,7 +119,7 @@ theMenu = [
                 "name": "鮪魚沙拉蛋餅",
                 "price": 35,
                 "comment": "手工蛋餅皮+一整罐鮪魚",
-                "img": "./Img/PC/p015.jpg",
+                "img": "./img/PC/p015.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -131,7 +131,7 @@ theMenu = [
                 "name": "起司蛋餅",
                 "price": 35,
                 "comment": "手工蛋餅皮+爆漿起司",
-                "img": "./Img/PC/p016.jpg",
+                "img": "./img/PC/p016.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -149,7 +149,7 @@ theMenu = [
                 "name": "果醬吐司",
                 "price": 15,
                 "comment": "切邊烤土司+一公分厚塗果醬",
-                "img": "./Img/PC/p021.jpg",
+                "img": "./img/PC/p021.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -161,7 +161,7 @@ theMenu = [
                 "name": "鮪魚沙拉吐司",
                 "price": 35,
                 "comment": "切邊烤土司+一整罐鮪魚",
-                "img": "./Img/PC/p022.jpg",
+                "img": "./img/PC/p022.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -173,7 +173,7 @@ theMenu = [
                 "name": "培根吐司",
                 "price": 35,
                 "comment": "切邊烤土司+雙份培根",
-                "img": "./Img/PC/p023.jpg",
+                "img": "./img/PC/p023.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -185,7 +185,7 @@ theMenu = [
                 "name": "里肌豬排吐司",
                 "price": 35,
                 "comment": "切邊烤土司+厚切里肌豬排",
-                "img": "./Img/PC/p024.jpg",
+                "img": "./img/PC/p024.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -203,7 +203,7 @@ theMenu = [
                 "name": "紐澳良豬排堡",
                 "price": 55,
                 "comment": "就是豬排加生菜的漢堡啦",
-                "img": "./Img/PC/p031.jpg",
+                "img": "./img/PC/p031.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -215,7 +215,7 @@ theMenu = [
                 "name": "美味蟹堡",
                 "price": 45,
                 "comment": "是誰住在深海的大鳳梨裡",
-                "img": "./Img/PC/p032.jpg",
+                "img": "./img/PC/p032.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -227,7 +227,7 @@ theMenu = [
                 "name": "阿拉斯加鱈魚堡",
                 "price": 45,
                 "comment": "鱈~魚~堡~",
-                "img": "./Img/PC/p033.jpg",
+                "img": "./img/PC/p033.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -239,7 +239,7 @@ theMenu = [
                 "name": "日式和牛堡",
                 "price": 100,
                 "comment": "日本來的和牛，頂級享受",
-                "img": "./Img/PC/p034.jpg",
+                "img": "./img/PC/p034.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -251,7 +251,7 @@ theMenu = [
                 "name": "薯泥堡",
                 "price": 40,
                 "comment": "內含薯泥沙拉，美味蔬食",
-                "img": "./Img/PC/p035.jpg",
+                "img": "./img/PC/p035.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -263,7 +263,7 @@ theMenu = [
                 "name": "無骨雞腿堡",
                 "price": 55,
                 "comment": "精選黃金右腿去骨雞腿排",
-                "img": "./Img/PC/p036.jpg",
+                "img": "./img/PC/p036.jpg",
                 "subjoinIds": [
                     "AH01"
                 ],
@@ -281,7 +281,7 @@ theMenu = [
                 "name": "經典美味沙拉",
                 "price": 55,
                 "comment": "全素草食餐",
-                "img": "./Img/PC/p041.jpg",
+                "img": "./img/PC/p041.jpg",
                 "subjoinIds": [
                     "AH01",
                     "AH04"
@@ -294,7 +294,7 @@ theMenu = [
                 "name": "低脂蛋白沙拉",
                 "price": 55,
                 "comment": "很多葉子搭配水煮蛋、舒肥雞胸肉",
-                "img": "./Img/PC/p042.jpg",
+                "img": "./img/PC/p042.jpg",
                 "subjoinIds": [
                     "AH01",
                     "AH04"
@@ -311,7 +311,7 @@ theMenu = [
                 "id": "p051",
                 "name": "歡樂薯餅",
                 "catId": "c05",
-                "img": "./Img/PC/p051.jpg",
+                "img": "./img/PC/p051.jpg",
                 "comment": "薯餅薯餅得第一",
                 "isSoldOut": false,
                 "price": 10,
@@ -326,7 +326,7 @@ theMenu = [
                 "name": "雞塊",
                 "price": 30,
                 "comment": "一份4塊",
-                "img": "./Img/PC/p052.jpg",
+                "img": "./img/PC/p052.jpg",
                 "subjoinIds": [
                     "AH04"
                 ],
@@ -338,7 +338,7 @@ theMenu = [
                 "name": "薯條",
                 "price": 30,
                 "comment": "酥脆薯條，素食可用",
-                "img": "./Img/PC/p053.jpg",
+                "img": "./img/PC/p053.jpg",
                 "subjoinIds": [
                     "AH04"
                 ],
@@ -350,7 +350,7 @@ theMenu = [
                 "name": "熱狗",
                 "price": 30,
                 "comment": "國產熱狗",
-                "img": "./Img/PC/p054.jpg",
+                "img": "./img/PC/p054.jpg",
                 "subjoinIds": [
                     "AH04"
                 ],
@@ -362,7 +362,7 @@ theMenu = [
                 "name": "月亮蝦餅",
                 "price": 30,
                 "comment": "泰式月亮蝦餅搭配泰式酸辣醬",
-                "img": "./Img/PC/p055.jpg",
+                "img": "./img/PC/p055.jpg",
                 "subjoinIds": [
                     "AH04"
                 ],
@@ -380,7 +380,7 @@ theMenu = [
                 "name": "早餐店奶茶",
                 "price": 15,
                 "comment": "台灣特色，早餐店奶茶",
-                "img": "./Img/PC/p061.jpg",
+                "img": "./img/PC/p061.jpg",
                 "subjoinIds": [
                     "AH02",
                     "AH03",
@@ -394,7 +394,7 @@ theMenu = [
                 "name": "經典紅茶",
                 "price": 15,
                 "comment": "台灣高山茶葉沖泡",
-                "img": "./Img/PC/p062.jpg",
+                "img": "./img/PC/p062.jpg",
                 "subjoinIds": [
                     "AH01",
                     "AH02",

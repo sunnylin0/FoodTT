@@ -358,7 +358,7 @@ ul.tagList {
 .adBackground {
 	width: 100%;
 	/* height: 70vh; */
-	background-image: url("./Img/PC/banner.png");
+	background-image: url("./img/PC/banner.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	/* background-position: center; */
@@ -367,7 +367,7 @@ ul.tagList {
 
 @media (max-width: 992px) {
 	.adBackground {
-		background-image: url("./Img/MOBILE/banner.png");
+		background-image: url("./img/MOBILE/banner.png");
 		min-height: 676px;
 	}
 }
@@ -382,5 +382,5 @@ ul.tagList {
 /*#region ---------- NAN ----------*/
 /*#endregion NAN*/
 .announce {
-	background-image: url(./Img/logo.png);
+	background-image: url(./img/logo.png);
 }
