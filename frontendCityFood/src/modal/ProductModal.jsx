@@ -60,11 +60,11 @@ let SubjoinContents = ({  subjoinIds ,useSingleItem }) => {
         let addObj = theFoodSubjoins.find(x => x.id == subjoinId);
 
         return (
-            <div key={key} className="" data-addtion-id={addObj.id}>
+            <div key={key} className="row" data-addtion-id={addObj.id}>
                 <label>{addObj.name}</label>
                 <hr className="my-1" />
                 {addObj.items.map((item, key) =>
-                    <div key={key}>
+					<div key={key} className="col-auto">
                         <input type={addObj.isMulti ? 'checkbox' : 'radio'} className="btn-check foodSubjoinOption" name={addObj.name}
 							id={'add-' + item.id} value={item.id} data-subprice={item.price} 
 							checked={singleState.subjoinItems.indexOf(item.id) >= 0}
